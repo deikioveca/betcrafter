@@ -49,8 +49,8 @@ Running guide
 
 Workflow
 -
-* Create ticket - store a new football betting ticket with stake and matches info
-* Get pending ticket - retrieve all tickets that are not yet resolved
-* Update pending ticket - modify ticket info: profit, cashout(true,false), status(won,lost), match result outcome if it's correct or wrong
+* Create ticket              - store a new football betting ticket with stake and matches info
+* Get pending ticket         - retrieve all tickets that are not yet resolved
+* Update pending ticket      - modify ticket info: profit, cashout(true,false), status(won,lost), match result outcome if it's correct or wrong
 * Get ticket by status or id - retrieve tickets by status or ticet by id
-* Analyze tickets - retrieve useful information about your tickets from date range: for example the 3 most profitable outcomes, overall statistic -> total tickets, won count, lost count, total profit, ROI, Hitrate etc.
+* Analyze tickets            - retrieve useful information about your tickets from date range: for example the 3 most profitable outcomes, overall statistic -> total tickets, won count, lost count, total profit, ROI, Hitrate etc.
