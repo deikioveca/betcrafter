@@ -1,0 +1,50 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: betcrafter
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d betcrafter"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+      start_period: 5s
+
+  web:
+    build: .
+    container_name: betcrafter-web
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      DB_HOST: db
+    command: ["./betcrafter-web"]
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  cli:
+    build: .
+    container_name: betcrafter-cli
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      DB_HOST: db
+    command: ["./betcrafter-cli"]
+    stdin_open: true
+    tty: true
+    restart: "no"
+
+volumes:
+  pgdata:
